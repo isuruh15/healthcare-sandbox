@@ -46,7 +46,7 @@ service / on new http:Listener(9090) {
         // Get the payload from the request
         string textPayload = check request.getTextPayload();
         // Invoke the v2tofhir service
-        json result = check v2tofhirClient->post("/v2tofhir/transform", textPayload);
+        json result = check v2tofhirClient->post("/transform", textPayload);
         return result;
     }
 
