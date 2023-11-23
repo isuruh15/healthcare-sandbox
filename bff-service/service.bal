@@ -37,7 +37,7 @@ final http:Client organizationfhirClient = check new (organizationfhirAPIUrl, co
 
 final http:Client observationfhirClient = check new (observationfhirAPIUrl, config);
 
-service / on new http:Listener(9090) {
+service / on new http:Listener(9080) {
 
     # + return - a json
     # TODO: Change v2tofhir/transform to transform in the v2tofhir service
@@ -46,7 +46,7 @@ service / on new http:Listener(9090) {
         // Get the payload from the request
         string textPayload = check request.getTextPayload();
         // Invoke the v2tofhir service
-        json result = check v2tofhirClient->post("/v2tofhir/transform", textPayload);
+        json result = check v2tofhirClient->post("/transform", textPayload);
         return result;
     }
 
